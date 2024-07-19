@@ -18,11 +18,6 @@ export const Expense = ({ expense, loadExpenses }) => {
     }
   };
 
-  console.log("Expense:", expense);
-  console.log("Amount:", amount);
-  console.log("Category:", category);
-  console.log("Description:", description);
-
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,

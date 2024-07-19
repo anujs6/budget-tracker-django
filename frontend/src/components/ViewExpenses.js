@@ -41,10 +41,6 @@ export const ViewExpenses = ({
     },
   }));
 
-  if (!expenses) {
-    return <div>No Expenses Available.</div>
-  }
-
   return (
     <Dialog open={isDialogOpen} maxWidth="lg">
       <DialogTitle>Expenses</DialogTitle>

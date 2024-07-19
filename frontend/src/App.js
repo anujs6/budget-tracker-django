@@ -8,9 +8,9 @@ function App() {
 
   const loadExpenses = async () => {
     try {
-      const { data } = await fetchExpenses();
-
-      setExpenses(data);
+      const data = await fetchExpenses();
+      console.log("Fetched expenses:", data);
+      setExpenses(data); 
     } catch (e) {
       console.log(e);
     }
@@ -19,6 +19,10 @@ function App() {
   useEffect(() => {
     loadExpenses();
   }, []);
+
+  useEffect(() => {
+    console.log("Expenses state updated:", expenses);
+  }, [expenses]);
 
   return (
     <div className="container">
