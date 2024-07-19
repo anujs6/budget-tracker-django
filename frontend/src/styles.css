@@ -1,0 +1,21 @@
+:root {
+    --primary-color: #1976d2; /* Blue color for primary actions */
+    --secondary-color: #dc004e; /* Red color for secondary actions */
+    --background-color: #f5f5f5; /* Light gray background */
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    margin-top: 20px; /* Add space above the buttons */
+  }
+  

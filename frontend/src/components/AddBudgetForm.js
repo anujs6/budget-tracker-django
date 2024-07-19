@@ -38,15 +38,6 @@ export const AddBudgetForm = ({ loadExpenses, expenses }) => {
   return (
     <div className="expenses">
       <div className="form-container">
-        <Typography
-          align="center"
-          variant="h4"
-          paddingTop={2}
-          paddingBottom={2}
-        >
-          Expense Tracker
-        </Typography>{" "}
-        <br />
         <TextField
           required
           fullWidth
@@ -86,12 +77,14 @@ export const AddBudgetForm = ({ loadExpenses, expenses }) => {
         />
         <br />
         <br />
-        <Button variant="contained" onClick={addNewExpense}>
-          Add Expense
-        </Button>
-        <Button variant="contained" onClick={() => setIsDialogOpen(true)}>
-          View Expenses
-        </Button>
+        <div className="buttonContainer">
+            <Button variant="contained" color="primary" style={{ marginRight: '10px' }} onClick={addNewExpense}>
+            Add Expense
+            </Button>
+            <Button variant="outlined" color="secondary" onClick={() => setIsDialogOpen(true)}>
+            View Expenses
+            </Button>
+        </div>
       </div>
       <ViewExpenses
         isDialogOpen={isDialogOpen}
