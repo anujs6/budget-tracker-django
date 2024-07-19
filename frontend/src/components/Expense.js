@@ -1,18 +1,18 @@
 import React from "react";
-import axios from "axios";
+import { deleteExpense } from "../services/api";
 import { Button, TableCell, TableRow } from "@mui/material";
 import { tableCellClasses } from "@mui/material/TableCell";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { styled } from "@mui/material/styles";
 
-export const Expense = ({ expense, fetchExpenses }) => {
+export const Expense = ({ expense, loadExpenses }) => {
   const { id, amount, category, description } = expense;
 
   const handleDeleteExpense = async () => {
     try {
-      await axios.delete(`${""}/${expense.id}`);
+      await deleteExpense(id);
 
-      await fetchExpenses();
+      await loadExpenses();
     } catch (e) {
       console.log(e);
     }
@@ -22,6 +22,7 @@ export const Expense = ({ expense, fetchExpenses }) => {
   console.log("Amount:", amount);
   console.log("Category:", category);
   console.log("Description:", description);
+
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,

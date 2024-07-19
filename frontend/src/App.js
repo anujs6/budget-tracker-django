@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { AddBudgetForm } from "./components/AddBudgetForm";
-import axios from "axios";
+import { fetchExpenses } from "./services/api";
 
 
 function App() {
   const [expenses, setExpenses] = useState([]);
 
-  const fetchExpenses = async () => {
+  const loadExpenses = async () => {
     try {
-      const { data } = await axios.get();
+      const { data } = await fetchExpenses();
 
       setExpenses(data);
     } catch (e) {
@@ -17,12 +17,12 @@ function App() {
   };
 
   useEffect(() => {
-    fetchExpenses();
+    loadExpenses();
   }, []);
 
   return (
     <div className="container">
-      <AddBudgetForm fetchExpenses={fetchExpenses} expenses={expenses} />
+      <AddBudgetForm loadExpenses={loadExpenses} expenses={expenses} />
     </div>
   );
 }

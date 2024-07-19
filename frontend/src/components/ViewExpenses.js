@@ -18,7 +18,7 @@ import { Expense } from "./Expense";
 export const ViewExpenses = ({
   isDialogOpen,
   setIsDialogOpen,
-  fetchExpenses,
+  loadExpenses,
   expenses,
 }) => {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -41,6 +41,10 @@ export const ViewExpenses = ({
     },
   }));
 
+  if (!expenses) {
+    return <div>No Expenses Available.</div>
+  }
+
   return (
     <Dialog open={isDialogOpen} maxWidth="lg">
       <DialogTitle>Expenses</DialogTitle>
@@ -59,7 +63,7 @@ export const ViewExpenses = ({
               <Expense
                 expense={expense}
                 key={expense.id}
-                fetchExpenses={fetchExpenses}
+                loadExpenses={loadExpenses}
               />
             ))}
           </TableBody>

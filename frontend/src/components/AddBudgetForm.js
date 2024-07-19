@@ -8,10 +8,10 @@ import {
   FormControl,
   Button,
 } from "@mui/material";
-import axios from "axios";
+import { createExpense } from "../services/api";
 import { ViewExpenses } from "./ViewExpenses";
 
-export const AddBudgetForm = ({ fetchExpenses, expenses }) => {
+export const AddBudgetForm = ({ loadExpenses, expenses }) => {
   const [newAmount, setNewAmount] = useState(0);
   const [newCategory, setNewCategory] = useState("");
   const [newDescription, setNewDescription] = useState("");
@@ -19,13 +19,13 @@ export const AddBudgetForm = ({ fetchExpenses, expenses }) => {
 
   const addNewExpense = async () => {
     try {
-      await axios.post("", {
-        amount: newAmount,
+      await createExpense({
+        amount: Number(newAmount),
         category: newCategory,
         description: newDescription,
       });
 
-      await fetchExpenses();
+      await loadExpenses();
 
       setNewAmount(0);
       setNewCategory("");
@@ -54,6 +54,7 @@ export const AddBudgetForm = ({ fetchExpenses, expenses }) => {
           label="Amount in Dollars"
           variant="outlined"
           value={newAmount}
+          type="number"
           onChange={(e) => setNewAmount(e.target.value)}
         />
         <br />
@@ -95,7 +96,7 @@ export const AddBudgetForm = ({ fetchExpenses, expenses }) => {
       <ViewExpenses
         isDialogOpen={isDialogOpen}
         setIsDialogOpen={setIsDialogOpen}
-        fetchExpenses={fetchExpenses}
+        loadExpenses={loadExpenses}
         expenses={expenses}
       ></ViewExpenses>
     </div>
